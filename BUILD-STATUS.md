@@ -20,6 +20,20 @@
   - Skill discovery: `continue-build` and `auto-switch-model` load at session
     start; in a brand-new session mention them explicitly if needed.
   - `cline config` requires a TTY — cannot be run from the agent shell.
+  - Paid packs were publicly served for a short pre-sale window on commit
+    86f5a05 before being removed (history rewritten to 7346bf4, packs now
+    404). They were regenerated content with zero sales; if absolute
+    certainty is wanted, tweak pack wording before launch.
+
+## Production hardening (complete)
+
+- Paid prompt packs untracked + gitignored; history rewritten (force push) so
+  live site returns 404 for pack files. Packs remain on disk as deliverables.
+- Font-family selector in festival-greeting actually renders now (was dead).
+- Added: LICENSE (MIT), .nojekyll, branded 404.html, robots.txt, sitemap.xml,
+  Open Graph + Twitter meta on all 5 pages.
+- Root README product table reflects reality (all live) with URLs.
+- Verified: both script.js pass node --check, all pages 200, packs 404.
 
 ## Completed products
 
