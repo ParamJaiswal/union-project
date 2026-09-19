@@ -36,6 +36,12 @@ GitHub Pages.
     └── prompt-library/           # storefront; paid packs in packs/ (not published)
 ```
 
+## Making money with this repo
+
+See **[MONETIZATION-GUIDE.md](MONETIZATION-GUIDE.md)** — per-product earning
+models, payment setup (Instamojo/Gumroad/Razorpay), free deployment options,
+a first-customers playbook, and a first-₹1,000 checklist.
+
 ## Development
 
 Each product is a standalone folder under `products/`. Open `index.html`

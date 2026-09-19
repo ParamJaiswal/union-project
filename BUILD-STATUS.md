@@ -12,10 +12,10 @@
   4 pages serve HTTP 200) and prompt-library (storefront + 4 real prompt pack
   files totalling 160 prompts, all claims corrected to match actual counts,
   5 pages/files serve HTTP 200).
-- **next_step (selling, optional):** create Gumroad/Instamojo products and
-  replace the `href="#"` on each `.buy-btn` in
-  `products/prompt-library/index.html` with real checkout URLs — checklist in
-  `products/prompt-library/packs/README.md`. No code work remains.
+- **next_step (selling, optional):** follow **MONETIZATION-GUIDE.md** —
+  set up Instamojo, create the 4 pack listings, then send the checkout URLs
+  to wire into the storefront buy buttons. Playbook for first customers is in
+  the guide. No code work remains.
 - **known_issues:**
   - Skill discovery: `continue-build` and `auto-switch-model` load at session
     start; in a brand-new session mention them explicitly if needed.
