@@ -5,33 +5,37 @@
 
 ## Current product
 
-- **product:** catalogue-builder (`D:\union project\products\catalogue-builder\`)
-- **phase:** html
-- **last_completed:** `index.html` lines 1–94 — head, header, editor tab with
-  catalogue settings, add-product form, product list placeholder, and
-  import/export buttons. File ends mid-`<aside>` at line 94 (`</div>` closing
-  the editor tab content); about tab, preview section, footer, and closing
-  tags are still missing.
-- **next_step:** Append to `index.html` after line 94 (`      </div>` of the
-  editor tab): the About tab (`<div class="tab-content" id="aboutTab">`),
-  `</aside>`, the preview `<section class="preview-section">` (with
-  `#downloadPdfBtn`, `#resetCatalogueBtn`, `#catalogueContent`,
-  `#previewTitle`, `#previewSubtitle`, `#previewProductGrid`), `<footer>`,
-  `<div id="toast"></div>`, `<script src="script.js"></script>`, `</body>`,
-  `</html>`. Then create `style.css` (reuse festival-greeting design tokens)
-  and `script.js` (product CRUD, CSV/JSON import-export, live preview,
-  html2pdf.js export via the CDN script already in `<head>`).
+- **product:** none — all 4 products are built
+- **phase:** complete
+- **last_completed:** landing-pages (gallery + 3 templates, all verified:
+  balanced divs, no broken anchors/links, countdown JS passes `node --check`,
+  4 pages serve HTTP 200) and prompt-library (storefront + 4 real prompt pack
+  files totalling 160 prompts, all claims corrected to match actual counts,
+  5 pages/files serve HTTP 200).
+- **next_step (selling, optional):** create Gumroad/Instamojo products and
+  replace the `href="#"` on each `.buy-btn` in
+  `products/prompt-library/index.html` with real checkout URLs — checklist in
+  `products/prompt-library/packs/README.md`. No code work remains.
 - **known_issues:**
-  - Multi-part `editor` inserts leave extra indentation/duplicate closers —
-    inspect after each insert.
-  - `editor` rejects `new_text` over ~6,000 chars; chunk large files.
-  - PowerShell 5.1 quirks: no `&&`, no ternary, no `-TimeoutSeconds`.
+  - Skill discovery: `continue-build` and `auto-switch-model` load at session
+    start; in a brand-new session mention them explicitly if needed.
+  - `cline config` requires a TTY — cannot be run from the agent shell.
 
 ## Completed products
 
-| Product | Status | Live URL | Commit |
-|---|---|---|---|
-| festival-greeting | ✅ built, verified, deployed | https://paramjaiswal.github.io/union-project/products/festival-greeting/index.html | d47beaf |
+| Product | Status | Live URL |
+|---|---|---|
+| festival-greeting | ✅ live | https://paramjaiswal.github.io/union-project/products/festival-greeting/ |
+| catalogue-builder | ✅ live | https://paramjaiswal.github.io/union-project/products/catalogue-builder/ |
+| landing-pages | ✅ live | https://paramjaiswal.github.io/union-project/products/landing-pages/ |
+| prompt-library | ✅ live (buy buttons need seller URLs) | https://paramjaiswal.github.io/union-project/products/prompt-library/ |
+
+## Skills
+
+| Skill | Purpose |
+|---|---|
+| `.cline/skills/continue-build` | Resume interrupted builds from BUILD-STATUS.md |
+| `.cline/skills/auto-switch-model` | Stall detection + free-model handoff ladder (routes A/B/C) |
 
 ## Environment notes
 

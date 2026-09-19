@@ -291,16 +291,17 @@ function drawText(ctx, w, h, state) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
 
-  // English text (drawn with a Latin-friendly font)
-  ctx.font = `700 ${state.fontSize * 0.8}px 'Roboto', sans-serif`;
+  // English text — uses the selected font, falling back to Roboto
+  ctx.font = `700 ${state.fontSize * 0.8}px '${state.fontFamily}', 'Roboto', sans-serif`;
   let englishY = h * 0.55;
   ctx.fillStyle = state.primaryColor;
   ctx.strokeStyle = 'rgba(0,0,0,0.3)';
   ctx.lineWidth = 2;
   wrapText(ctx, state.englishText, w / 2, englishY, w * 0.8, state.fontSize * 0.8);
 
-  // Hindi text (drawn with Hind font for Devanagari support)
-  ctx.font = `700 ${state.fontSize * 0.6}px 'Hind', sans-serif`;
+  // Hindi text — selected font first; Hind stays in the chain because
+  // non-Hind fonts (Georgia, Roboto) lack Devanagari glyphs
+  ctx.font = `700 ${state.fontSize * 0.6}px '${state.fontFamily}', 'Hind', sans-serif`;
   let hindiY = englishY + state.fontSize * 1.3;
   ctx.fillStyle = state.secondaryColor;
   ctx.strokeStyle = 'rgba(0,0,0,0.3)';

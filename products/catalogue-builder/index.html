@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Catalogue PDF Builder</title>
   <meta name="description" content="Build printable product catalogues from CSV/JSON data. Export to PDF. 100% client-side, no signup." />
+  <meta property="og:title" content="Catalogue PDF Builder — Free, Client-Side">
+  <meta property="og:description" content="Build product catalogues with images, prices, and descriptions. Import CSV/JSON, export PDF. Runs entirely in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://paramjaiswal.github.io/union-project/products/catalogue-builder/">
+  <meta name="twitter:card" content="summary">
   <meta name="color-scheme" content="light dark">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,5 +97,69 @@
           </div>
         </div>
       </div>
+
+      <div class="tab-content" id="aboutTab">
+        <h2>Catalogue PDF Builder</h2>
+        <div class="about-content">
+          <p>📇 <strong>Catalogue PDF Builder</strong> is a free, open-source web app
+          that lets you create professional product catalogues and export them as PDFs —
+          all in your browser, no backend required.</p>
+          <p><strong>Features:</strong></p>
+          <ul class="feature-list">
+            <li>Add products with name, price, SKU, description, and images</li>
+            <li>Upload images from URL or file</li>
+            <li>Import/export catalogue data via CSV or JSON</li>
+            <li>Real-time preview of catalogue layout</li>
+            <li>Download as high-quality PDF</li>
+            <li>100% client-side — your data never leaves your browser</li>
+          </ul>
+          <p><strong>CSV Format:</strong></p>
+          <pre class="code-block">name,price,sku,image,description
+Handcrafted Lamp,499,SKU-001,https://example.com/lamp.jpg,Beautiful lamp</pre>
+          <p class="text-secondary">Made with ❤️ in India.</p>
+          <div class="footer-links">
+            <a href="https://github.com/ParamJaiswal/union-project" target="_blank">GitHub</a> · MIT License
+          </div>
+        </div>
+      </div>
+        </aside>
+
+    <!-- Preview Panel -->
+    <section class="preview-section">
+      <div class="preview-header">
+        <h2 style="color: var(--accent);">📄 Preview</h2>
+        <div class="export-bar">
+          <button class="btn btn-primary" id="downloadPdfBtn">⬇ Download as PDF</button>
+          <button class="btn btn-outline" id="resetCatalogueBtn">⟲ Reset</button>
+        </div>
+      </div>
+      <div class="canvas-wrapper" id="cataloguePreview">
+        <div id="catalogueContent" class="catalogue-page">
+          <div class="catalogue-cover">
+            <h1 class="catalogue-title" id="previewTitle">Product Catalogue</h1>
+            <p class="catalogue-subtitle" id="previewSubtitle">Premium Collection 2024</p>
+          </div>
+          <div class="product-grid" id="previewProductGrid">
+            <p class="text-secondary" style="text-align:center; padding:2rem 0;">
+              No products to display. Add products in the Editor tab.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 Catalogue PDF Builder. MIT License.
+      No backend, no signup, no watermarks.</p>
+    </div>
+  </footer>
+
+  <div id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
 
 

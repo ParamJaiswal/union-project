@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharma Dental Care — Gentle Dentistry in Jaipur</title>
+<meta name="description" content="Family dental clinic in Jaipur. Painless root canals, implants, braces. Book an appointment today — same-day slots available.">
+<style>
+:root{--primary:#0d9488;--primary-dark:#0f766e;--dark:#134e4a;--muted:#57534e;--light:#f0fdfa;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;color:#1c1917;line-height:1.6}
+.container{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid #e7e5e4;z-index:100}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-weight:800;font-size:1.2rem;color:var(--primary)}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.95rem}
+.nav-links a:hover{color:var(--dark)}
+.btn{display:inline-block;padding:.7rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:600;transition:all .2s;border:none;cursor:pointer;font-size:1rem}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.btn-outline{border:2px solid var(--primary);color:var(--primary)}
+.hero{padding:5rem 0;background:linear-gradient(180deg,var(--light),#fff);text-align:center}
+.hero h1{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.2;margin-bottom:1rem}
+.hero h1 span{color:var(--primary)}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 auto 2rem}
+.badges{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:2.5rem;color:var(--muted);font-size:.9rem}
+section{padding:4rem 0}
+.section-title{text-align:center;font-size:1.9rem;margin-bottom:.5rem}
+.section-sub{text-align:center;color:var(--muted);max-width:540px;margin:0 auto 2.5rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
+.service{background:#fff;border:1px solid #e7e5e4;border-radius:var(--radius);padding:1.5rem;transition:box-shadow .2s}
+.service:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.service .icon{font-size:1.8rem;margin-bottom:.5rem}
+.service h3{font-size:1.05rem;margin-bottom:.35rem}
+.service p{color:var(--muted);font-size:.9rem}
+.service .price{display:block;margin-top:.6rem;color:var(--primary);font-weight:700}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+@media(max-width:760px){.about{grid-template-columns:1fr}}
+.about ul{list-style:none;margin-top:1rem}
+.about li{padding:.3rem 0;color:var(--muted)}
+.about li::before{content:'✓ ';color:var(--primary);font-weight:700}
+.hours{background:var(--light)}
+.hours-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;max-width:760px;margin:0 auto}
+.hours-card{background:#fff;border-radius:var(--radius);padding:1.25rem;text-align:center;border:1px solid #ccfbf1}
+.hours-card .day{font-weight:700}
+.hours-card .time{color:var(--muted);font-size:.9rem;margin-top:.25rem}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;text-align:center}
+.contact-item{background:#fff;border:1px solid #e7e5e4;border-radius:var(--radius);padding:1.5rem}
+.contact-item .icon{font-size:1.6rem}
+.contact-item h4{margin:.4rem 0 .2rem}
+.contact-item p{color:var(--muted);font-size:.9rem}
+.cta{background:var(--primary);color:#fff;text-align:center}
+.cta h2{font-size:1.9rem;margin-bottom:.75rem}
+.cta p{opacity:.9;margin-bottom:1.5rem}
+.cta .btn{background:#fff;color:var(--primary)}
+footer{padding:1.75rem 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid #e7e5e4}
+@media(max-width:640px){.nav-links a:not(.btn){display:none}}
+</style>
+</head>
+<nav>
+  <div class="container">
+    <div class="brand">🦷 Sharma Dental Care</div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#hours">Hours</a>
+      <a href="#contact" class="btn btn-primary" style="padding:.5rem 1.1rem;font-size:.9rem">Book Now</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <h1>Gentle dentistry for the whole family — <span>right here in Jaipur</span></h1>
+    <p>15+ years of painless treatments, transparent pricing, and same-day appointments. Walk-ins welcome.</p>
+    <a href="#contact" class="btn btn-primary">📅 Book an Appointment</a>
+    <div class="badges">
+      <span>⭐ 4.9 rating (500+ reviews)</span>
+      <span>🏥 ISO-certified clinic</span>
+      <span>💳 All insurance accepted</span>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Complete dental care under one roof — with upfront, honest pricing.</p>
+    <div class="services-grid">
+      <div class="service"><div class="icon">🦷</div><h3>Root Canal</h3><p>Painless single-visit RCT with rotary endodontics.</p><span class="price">From ₹3,500</span></div>
+      <div class="service"><div class="icon">😁</div><h3>Braces &amp; Aligners</h3><p>Metal, ceramic, and invisible aligners for all ages.</p><span class="price">From ₹25,000</span></div>
+      <div class="service"><div class="icon">🔩</div><h3>Dental Implants</h3><p>Permanent tooth replacement with lifetime warranty.</p><span class="price">From ₹20,000</span></div>
+      <div class="service"><div class="icon">✨</div><h3>Teeth Whitening</h3><p>Professional whitening — visible results in one sitting.</p><span class="price">From ₹4,000</span></div>
+      <div class="service"><div class="icon">👶</div><h3>Kids Dentistry</h3><p>Friendly, fear-free care designed for children.</p><span class="price">From ₹500</span></div>
+      <div class="service"><div class="icon">🧼</div><h3>Cleaning &amp; Polishing</h3><p>Ultrasonic scaling for healthy gums and fresh breath.</p><span class="price">From ₹800</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about">
+    <div>
+      <h2 class="section-title" style="text-align:left">Meet Dr. Priya Sharma</h2>
+      <p style="color:var(--muted)">BDS, MDS (Endodontics) — 15+ years of clinical experience, 10,000+ successful root canals.</p>
+      <ul>
+        <li>Member, Indian Dental Association</li>
+        <li>Advanced training in implantology, Germany</li>
+        <li>Digital X-ray &amp; painless anesthesia systems</li>
+        <li>Sterilization protocols exceeding WHO standards</li>
+      </ul>
+    </div>
+    <div style="background:var(--light);border-radius:var(--radius);padding:3rem;text-align:center;font-size:4rem">👩‍⚕️</div>
+  </div>
+</section>
+
+<section id="hours" class="hours">
+  <div class="container">
+    <h2 class="section-title">Clinic Hours</h2>
+    <p class="section-sub">Open 6 days a week. Sunday emergencies by phone.</p>
+    <div class="hours-grid">
+      <div class="hours-card"><div class="day">Mon – Fri</div><div class="time">10:00 AM – 8:00 PM</div></div>
+      <div class="hours-card"><div class="day">Saturday</div><div class="time">10:00 AM – 6:00 PM</div></div>
+      <div class="hours-card"><div class="day">Sunday</div><div class="time">Emergency only</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Visit Us</h2>
+    <p class="section-sub">Easy to reach, easy to park.</p>
+    <div class="contact-grid">
+      <div class="contact-item"><div class="icon">📍</div><h4>Address</h4><p>12, MI Road, Near Panch Batti, Jaipur 302001</p></div>
+      <div class="contact-item"><div class="icon">📞</div><h4>Phone / WhatsApp</h4><p>+91 98765 43210</p></div>
+      <div class="contact-item"><div class="icon">✉️</div><h4>Email</h4><p>care@sharmadental.in</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Toothache? Don't wait.</h2>
+    <p>Same-day slots available. Call or WhatsApp now.</p>
+    <a href="tel:+919876543210" class="btn">📞 Call +91 98765 43210</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© 2024 Sharma Dental Care · Template by Union Project · MIT License</div>
+</footer>
+</body>
+</html>
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevCon India 2024 — Dec 14–15, Bengaluru</title>
+<meta name="description" content="India's largest developer conference. 40+ talks, hands-on workshops, 3,000 attendees. Early bird tickets ₹999 — limited seats.">
+<style>
+:root{--primary:#f43f5e;--primary-dark:#e11d48;--dark:#1c1917;--muted:#78716c;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;color:#fff;background:var(--dark);line-height:1.6}
+.container{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+nav{position:sticky;top:0;background:rgba(28,25,23,.92);backdrop-filter:blur(8px);border-bottom:1px solid #292524;z-index:100}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-weight:800;font-size:1.2rem;color:var(--primary)}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{color:#a8a29e;text-decoration:none;font-size:.95rem}
+.nav-links a:hover{color:#fff}
+.btn{display:inline-block;padding:.7rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:600;transition:all .2s;border:none;cursor:pointer;font-size:1rem}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.hero{padding:5rem 0 4rem;text-align:center;background:radial-gradient(ellipse at 50% -20%,#4c1d95 0%,var(--dark) 60%)}
+.hero .date-badge{display:inline-block;background:rgba(244,63,94,.15);border:1px solid var(--primary);color:var(--primary);padding:.35rem 1rem;border-radius:99px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.8rem);line-height:1.1;margin-bottom:1rem}
+.hero p{font-size:1.15rem;color:#a8a29e;max-width:600px;margin:0 auto 1.75rem}
+.countdown{display:flex;justify-content:center;gap:1rem;margin:2rem 0;flex-wrap:wrap}
+.count-box{background:#292524;border-radius:var(--radius);padding:1rem 1.4rem;min-width:90px}
+.count-box .num{font-size:2rem;font-weight:800;color:var(--primary)}
+.count-box .lbl{font-size:.75rem;color:#a8a29e;text-transform:uppercase;letter-spacing:1px}
+section{padding:4rem 0}
+.section-title{text-align:center;font-size:1.9rem;margin-bottom:.5rem}
+.section-sub{text-align:center;color:#a8a29e;max-width:540px;margin:0 auto 2.5rem}
+.speakers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem}
+.speaker{background:#292524;border-radius:var(--radius);padding:1.5rem;text-align:center}
+.speaker .avatar{font-size:3rem;margin-bottom:.5rem}
+.speaker h3{font-size:1rem;margin-bottom:.15rem}
+.speaker p{color:#a8a29e;font-size:.8rem}
+.schedule-item{display:grid;grid-template-columns:100px 1fr;gap:1rem;background:#292524;border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:.75rem;max-width:760px;margin-inline:auto}
+.schedule-item .time{color:var(--primary);font-weight:700;font-size:.95rem}
+.schedule-item h4{margin-bottom:.15rem}
+.schedule-item p{color:#a8a29e;font-size:.88rem}
+.tickets{background:#292524}
+.tickets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;max-width:900px;margin:0 auto}
+.ticket{background:var(--dark);border:1px solid #44403c;border-radius:var(--radius);padding:1.75rem;text-align:center}
+.ticket.featured{border:2px solid var(--primary)}
+.ticket h3{color:#a8a29e;font-size:1rem}
+.ticket .price{font-size:2.2rem;font-weight:800;margin:.4rem 0}
+.ticket .price .strike{font-size:1rem;color:#78716c;text-decoration:line-through;font-weight:400;margin-right:.4rem}
+.ticket ul{list-style:none;margin:1rem 0;text-align:left}
+.ticket li{padding:.3rem 0;color:#a8a29e;font-size:.9rem}
+.ticket li::before{content:'✓ ';color:var(--primary);font-weight:700}
+.venue p{text-align:center;color:#a8a29e}
+.cta{text-align:center;background:radial-gradient(ellipse at 50% 120%,#4c1d95 0%,var(--dark) 70%)}
+.cta h2{font-size:2rem;margin-bottom:.75rem}
+.cta p{color:#a8a29e;margin-bottom:1.5rem}
+footer{padding:1.75rem 0;text-align:center;color:#78716c;font-size:.85rem;border-top:1px solid #292524}
+@media(max-width:640px){.nav-links a:not(.btn){display:none}.schedule-item{grid-template-columns:1fr}}
+</style>
+</head>
+<nav>
+  <div class="container">
+    <div class="brand">🎤 DevCon India</div>
+    <div class="nav-links">
+      <a href="#speakers">Speakers</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#tickets">Tickets</a>
+      <a href="#tickets" class="btn btn-primary" style="padding:.5rem 1.1rem;font-size:.9rem">Get Tickets</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="date-badge">📅 December 14–15, 2027 · Bengaluru</div>
+    <h1>DevCon India 2027</h1>
+    <p>Two days. 40+ talks. Hands-on workshops. India's largest gathering of developers, founders, and builders.</p>
+    <a href="#tickets" class="btn btn-primary">🎟️ Get Early Bird — ₹999</a>
+    <div class="countdown">
+      <div class="count-box"><div class="num" id="cd-days">--</div><div class="lbl">Days</div></div>
+      <div class="count-box"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
+      <div class="count-box"><div class="num" id="cd-mins">--</div><div class="lbl">Minutes</div></div>
+      <div class="count-box"><div class="num" id="cd-secs">--</div><div class="lbl">Seconds</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="speakers">
+  <div class="container">
+    <h2 class="section-title">Featured Speakers</h2>
+    <p class="section-sub">Learn from the people building the tools you use every day.</p>
+    <div class="speakers-grid">
+      <div class="speaker"><div class="avatar">👩‍💻</div><h3>Ananya Rao</h3><p>Staff Engineer, Google — Scaling Flutter</p></div>
+      <div class="speaker"><div class="avatar">👨‍💻</div><h3>Vikram Mehta</h3><p>CTO, Razorpay — Payments at Scale</p></div>
+      <div class="speaker"><div class="avatar">👩‍🔬</div><h3>Dr. Sana Khan</h3><p>AI Researcher — LLMs in Production</p></div>
+      <div class="speaker"><div class="avatar">👨‍🎨</div><h3>Arjun Nair</h3><p>Design Lead, Zeta — Design Systems</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="container">
+    <h2 class="section-title">Day 1 Schedule</h2>
+    <p class="section-sub">Full 2-day agenda released to ticket holders.</p>
+    <div class="schedule-item"><div class="time">09:00</div><div><h4>Registration &amp; Coffee</h4><p>Badge pickup, networking breakfast.</p></div></div>
+    <div class="schedule-item"><div class="time">10:00</div><div><h4>Keynote: The Next Decade of Indian SaaS</h4><p>Vikram Mehta, CTO Razorpay.</p></div></div>
+    <div class="schedule-item"><div class="time">11:30</div><div><h4>Workshop: Ship an LLM Feature in 90 Minutes</h4><p>Bring a laptop — hands-on with Dr. Sana Khan.</p></div></div>
+    <div class="schedule-item"><div class="time">14:00</div><div><h4>Panel: Design Systems at Scale</h4><p>Arjun Nair + guests from Flipkart &amp; Swiggy.</p></div></div>
+    <div class="schedule-item"><div class="time">17:00</div><div><h4>After-party &amp; Mixer</h4><p>Food, drinks, and the famous DevCon quiz.</p></div></div>
+  </div>
+</section>
+
+<section id="tickets" class="tickets">
+  <div class="container">
+    <h2 class="section-title">Tickets</h2>
+    <p class="section-sub">Prices go up Dec 1. Student discounts with valid ID.</p>
+    <div class="tickets-grid">
+      <div class="ticket">
+        <h3>Student</h3>
+        <div class="price">₹499</div>
+        <ul><li>Both days access</li><li>Talk recordings</li><li>Lunch included</li></ul>
+        <a href="#" class="btn btn-primary" style="width:100%">Book Student</a>
+      </div>
+      <div class="ticket featured">
+        <h3>Early Bird</h3>
+        <div class="price"><span class="strike">₹1,999</span>₹999</div>
+        <ul><li>Both days + workshops</li><li>Talk recordings</li><li>Lunch &amp; swag kit</li><li>After-party access</li></ul>
+        <a href="#" class="btn btn-primary" style="width:100%">Book Early Bird</a>
+      </div>
+      <div class="ticket">
+        <h3>VIP</h3>
+        <div class="price">₹4,999</div>
+        <ul><li>Everything in Early Bird</li><li>Speaker dinner invite</li><li>Front-row seating</li><li>1:1 mentor session</li></ul>
+        <a href="#" class="btn btn-primary" style="width:100%">Go VIP</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="venue">
+  <div class="container">
+    <h2 class="section-title">Venue</h2>
+    <p>📍 MLR Convention Centre, Whitefield, Bengaluru · Nearest metro: Hope Farm (Purple Line)</p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>3,000 seats. They go fast.</h2>
+    <p>Early bird pricing ends December 1st — or when tickets sell out.</p>
+    <a href="#tickets" class="btn btn-primary">🎟️ Secure Your Seat</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© 2024 DevCon India · Template by Union Project · MIT License</div>
+</footer>
+
+<script>
+(function(){
+  // REPLACE THIS with your event date/time (ISO 8601, include the offset).
+  // Keep it in the future or the countdown will sit at zero.
+  var target = new Date('2027-12-14T09:00:00+05:30').getTime();
+  function tick(){
+    var diff = Math.max(0, target - Date.now());
+    var d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5),
+        m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
+

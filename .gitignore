@@ -18,3 +18,11 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# Paid prompt packs — sellable deliverables, NOT public site content.
+# They live on disk for upload to Gumroad/Instamojo but must never be deployed.
+products/prompt-library/packs/*
+!products/prompt-library/packs/README.md
+
+# Transient agent handoff state (see .cline/skills/auto-switch-model)
+HANDOFF.md
