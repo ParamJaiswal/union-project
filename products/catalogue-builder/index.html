@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catalogue PDF Builder</title>
+  <meta name="description" content="Build printable product catalogues from CSV/JSON data. Export to PDF. 100% client-side, no signup." />
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Hind:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2360a5fa'>📇</text></svg>">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">📇 Catalogue PDF Builder</div>
+      <nav class="nav">
+        <button class="nav-btn active" data-tab="editor">Editor</button>
+        <button class="nav-btn" data-tab="about">About</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main">
+    <!-- Editor Panel -->
+    <aside class="controls-section">
+      <div class="tab-content active" id="editorTab">
+        <h2>Catalogue Settings</h2>
+        <div class="form-group">
+          <label for="catalogueTitle">Catalogue Title</label>
+          <input type="text" id="catalogueTitle" class="form-input" value="Product Catalogue">
+        </div>
+        <div class="form-group">
+          <label for="catalogueSubtitle">Subtitle</label>
+          <input type="text" id="catalogueSubtitle" class="form-input" value="Premium Collection 2024">
+        </div>
+
+                <h3 style="margin: 1.5rem 0 0.5rem; color: var(--accent);">Add Product</h3>
+
+        <div class="form-group">
+          <label for="productName">Product Name *</label>
+          <input type="text" id="productName" class="form-input" placeholder="e.g., Handcrafted Lamp">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="productPrice">Price (₹)</label>
+            <input type="number" id="productPrice" class="form-input" placeholder="e.g., 499">
+          </div>
+          <div class="form-group">
+            <label for="productSku">SKU</label>
+            <input type="text" id="productSku" class="form-input" placeholder="e.g., SKU-001">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="productImage">Image URL</label>
+          <input type="url" id="productImage" class="form-input" placeholder="https://example.com/image.jpg">
+        </div>
+        <div class="upload-area" id="imageUploadArea">
+          <div class="upload-icon">📎</div>
+          <div class="upload-text">Or upload image file</div>
+          <input type="file" id="imageFileInput" accept="image/*" hidden>
+        </div>
+        <div class="form-group">
+          <label for="productDesc">Description</label>
+          <textarea id="productDesc" class="form-input" rows="3" placeholder="Product description..."></textarea>
+        </div>
+                <button class="btn btn-primary" id="addProductBtn" style="width:100%; margin-bottom:1rem;">+ Add Product</button>
+
+        <h3 style="margin:1rem 0 0.5rem; color: var(--accent);">Products (<span id="productCount">0</span>)</h3>
+        <div class="product-list" id="productList">
+          <p class="text-secondary" style="text-align:center; padding:1rem 0;">
+            No products added yet. Add a product to get started.
+          </p>
+        </div>
+
+        <div style="border-top:1px solid var(--border); margin-top:1rem; padding-top:1rem;">
+          <h3 style="margin:0 0 0.5rem; color:var(--accent);">Import / Export</h3>
+          <div class="form-row">
+            <button class="btn btn-outline btn-sm" id="importCsvBtn">📥 Import CSV</button>
+            <input type="file" id="csvInput" accept=".csv" hidden>
+          </div>
+          <div class="form-row">
+            <button class="btn btn-outline btn-sm" id="importJsonBtn">📥 Import JSON</button>
+            <input type="file" id="jsonInput" accept=".json" hidden>
+          </div>
+          <div class="form-row">
+            <button class="btn btn-outline btn-sm" id="exportCsvBtn">📤 Export CSV</button>
+            <button class="btn btn-outline btn-sm" id="exportJsonBtn">📤 Export JSON</button>
+          </div>
+        </div>
+      </div>
+
+
