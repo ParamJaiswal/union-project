@@ -94,6 +94,47 @@ One deployment covers everything. GitHub Pages is already live and free.
 **Recommendation:** keep GitHub Pages as primary (already working). Add
 Cloudflare Pages as a mirror — one repo, two free CDNs, zero downtime risk.
 
+### Custom domain from name.com (free hosting stays free)
+
+The site currently lives at `https://paramjaiswal.github.io/union-project/`.
+A custom domain serves it at `https://yourdomain.com/` (root — the
+`/union-project/` prefix disappears; all internal links are relative, so
+everything keeps working).
+
+**Part 1 — DNS records at name.com (do this first):**
+1. Log in → My Domains → your domain → **DNS Records / Manage**.
+2. **Delete the default parking A record** name.com creates on `@` — it will
+   block GitHub otherwise.
+3. Add **4 A records** for the apex domain (Type `A`, Host `@`, TTL default):
+
+   | Host | Type | Value |
+   |------|------|-------|
+   | @ | A | 185.199.108.153 |
+   | @ | A | 185.199.109.153 |
+   | @ | A | 185.199.110.153 |
+   | @ | A | 185.199.111.153 |
+
+4. Add a **CNAME** for www (Type `CNAME`, Host `www`,
+   Value `paramjaiswal.github.io`).
+5. Save. DNS propagation: usually minutes, can take up to 48h.
+
+**Part 2 — GitHub side:**
+1. Repo → **Settings → Pages** → Custom domain → enter `yourdomain.com` →
+   Save. (This creates a `CNAME` file in the repo — commit it.)
+2. Wait for the DNS check to pass, then tick **Enforce HTTPS**. GitHub issues
+   a free Let's Encrypt certificate automatically (can take up to 24h).
+3. `paramjaiswal.github.io/union-project` then 301-redirects to your domain.
+
+**Part 3 — Update absolute URLs (send the domain to your agent):**
+Once live, these files reference the old github.io URL and should be updated
+to the new domain: `sitemap.xml`, `robots.txt`, the `og:url` meta tags on all
+5 pages, and README/BUILD-STATUS links.
+
+DNS record values are the official GitHub Pages IPs — always cross-check
+against GitHub's docs if anything changes.
+
+
+
 ---
 
 ## Step 3 — Get the first 10 customers (the actual work)
