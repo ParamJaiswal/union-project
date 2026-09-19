@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Festival Greeting Generator</title>
+  <meta name="description" content="Create beautiful festival greeting cards with custom text in English and Hindi. Add your logo and download as PNG — no signup, no watermarks, 100% free." />
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Hind:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23facc15'>🪔</text></svg>">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">🪔 Festival Greeting Generator</div>
+      <nav class="nav">
+        <button class="nav-btn active" data-tab="editor">Editor</button>
+        <button class="nav-btn" data-tab="templates">Templates</button>
+        <button class="nav-btn" data-tab="about">About</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main">
+    <section class="preview-section">
+      <div class="canvas-wrapper" id="canvasWrapper">
+        <canvas id="greetingCanvas" width="800" height="600"></canvas>
+      </div>
+      <div class="export-bar">
+        <button class="btn btn-primary btn-lg" id="exportBtn">⬇ Download as PNG</button>
+        <button class="btn btn-outline btn-lg" id="resetBtn">⟲ Reset</button>
+      </div>
+    </section>
+
+    <aside class="controls-section">
+
+
+          <div class="tab-content active" id="templatesTab">
+        <h2>Templates</h2>
+        <p class="text-secondary">Choose a festival theme to begin.</p>
+        <div class="template-grid">
+          <button class="template-card" data-template="diwali">
+            <div class="template-thumb diwali">🪔 दिवाली</div><span>Diwali</span>
+          </button>
+          <button class="template-card" data-template="holi">
+            <div class="template-thumb holi">🎨 होली</div><span>Holi</span>
+          </button>
+          <button class="template-card" data-template="eid">
+            <div class="template-thumb eid">🌙 ईद</div><span>Eid</span>
+          </button>
+          <button class="template-card" data-template="christmas">
+            <div class="template-thumb christmas">🎄 क्रिसमस</div><span>Christmas</span>
+          </button>
+          <button class="template-card" data-template="newyear">
+            <div class="template-thumb newyear">🎉 नववर्ष</div><span>New Year</span>
+          </button>
+          <button class="template-card" data-template="winter">
+            <div class="template-thumb winter">🦢 गर्मी</div><span>Winter</span>
+          </button>
+        </div>
+            </div>
+
+      <div class="tab-content" id="editorTab">
+        <h2>Customize</h2>
+
+        <fieldset class="form-group">
+          <label for="englishText">English Message</label>
+          <textarea id="englishText" class="form-input" rows="3"
+            placeholder="Happy Diwali to you and your family!">Happy Diwali to you and your family!</textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="hindiText">हिन्दी संदेश (Hindi Message)</label>
+          <input type="text" id="hindiText" class="form-input"
+            placeholder="आपको और आपके परिवार को शुभ दिवाली!"
+            value="आपको और आपके परिवार को शुभ दिवाली!">
+        </fieldset>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fontSize">Font Size: <span id="fontSizeVal">48</span>px</label>
+            <input type="range" id="fontSize" min="16" max="96" value="48" class="slider">
+          </div>
+          <div class="form-group">
+            <label for="fontFamily">Font Family</label>
+            <select id="fontFamily" class="form-input form-select">
+              <option value="Hind">Hind (Hindi optimized)</option>
+              <option value="Roboto">Roboto</option>
+              <option value="Georgia">Georgia</option>
+              <option value="monospace">Monospace</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset class="form-group">
+          <label>Color Theme</label>
+          <div class="color-presets">
+            <button class="color-swatch active" data-palette="diwali" data-primary="#FFD700" data-secondary="#D97706" data-accent="#FFD700"></button>
+            <button class="color-swatch" data-palette="holi" data-primary="#FF6B6B" data-secondary="#4ECDC4" data-accent="#FFE66D"></button>
+            <button class="color-swatch" data-palette="eid" data-primary="#4A90D9" data-secondary="#1A1A2E" data-accent="#E8E8E8"></button>
+            <button class="color-swatch" data-palette="christmas" data-primary="#E53935" data-secondary="#1565C0" data-accent="#FFFFFF"></button>
+            <button class="color-swatch" data-palette="newyear" data-primary="#FFD700" data-secondary="#0F0F23" data-accent="#C0C0C0"></button>
+          </div>
+        </fieldset>
+
+        <div class="form-row form-row-3">
+          <div class="form-group">
+            <label for="primaryColor">Primary</label>
+            <input type="color" id="primaryColor" value="#FFD700" class="color-input">
+          </div>
+          <div class="form-group">
+            <label for="secondaryColor">Secondary</label>
+            <input type="color" id="secondaryColor" value="#D97706" class="color-input">
+          </div>
+          <div class="form-group">
+            <label for="accentColor">Accent</label>
+            <input type="color" id="accentColor" value="#FFFFFF" class="color-input">
+          </div>
+        </div>
+
+        <fieldset class="form-group">
+          <label>Logo / Decorative Image</label>
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📎</div>
+            <div class="upload-text">Click or drag to upload</div>
+            <input type="file" id="logoInput" accept="image/*" hidden>
+          </div>
+          <button class="btn btn-sm btn-outline" id="clearLogoBtn" style="display:none;">✕ Remove Logo</button>
+        </fieldset>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="logoScale">Logo Scale: <span id="logoScaleVal">100</span>%</label>
+            <input type="range" id="logoScale" min="25" max="200" value="100" class="slider">
+          </div>
+          <div class="form-group">
+            <label for="logoPosX">X Position: <span id="logoPosXVal">50</span>%</label>
+            <input type="range" id="logoPosX" min="0" max="100" value="50" class="slider">
+          </div>
+          <div class="form-group">
+            <label for="logoPosY">Y Position: <span id="logoPosYVal">20</span>%</label>
+            <input type="range" id="logoPosY" min="0" max="100" value="20" class="slider">
+          </div>
+        </div>
+            </div>
+
+      <div class="tab-content" id="aboutTab">
+        <h2>About This Tool</h2>
+        <div class="about-content">
+          <p>🎉 <strong>Festival Greeting Generator</strong> is a free,
+          open-source web app that lets you create beautiful, personalized
+          greeting cards for any occasion — in English and Hindi.</p>
+
+          <p><strong>Features:</strong></p>
+          <ul class="feature-list">
+            <li>6 festival templates (Diwali, Holi, Eid, Christmas, New Year, Winter)</li>
+            <li>Bilingual text — English + हिन्दी (Devanagari)</li>
+            <li>Upload your logo or decorative image</li>
+            <li>Full color customization</li>
+            <li>Download as high-resolution PNG — no watermarks</li>
+            <li>100% client-side — your images never leave your browser</li>
+          </ul>
+
+          <p><strong>Built for:</strong> Side-income makers, small businesses,
+          and anyone who wants to send meaningful digital greetings without
+          expensive design tools.</p>
+
+          <p class="text-secondary">Made with ❤️ in India.</p>
+
+          <div class="footer-links">
+            <a href="https://github.com" target="_blank">GitHub</a> ·
+            <a href="https://www.buymeacoffee.com" target="_blank">Buy Me a Coffee</a> ·
+            <span class="text-secondary">MIT License</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 Festival Greeting Generator. MIT License.
+      No backend, no signup, no watermarks.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
