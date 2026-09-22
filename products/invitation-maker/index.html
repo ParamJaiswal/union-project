@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation Card Maker — Wedding, Birthday, Housewarming (Free)</title>
+<meta name="description" content="Create beautiful digital invitation cards for weddings, birthdays, and housewarmings. Hindi + English text, photo upload, download as PNG. Free, no signup, no watermarks.">
+<meta property="og:title" content="Invitation Card Maker — Free, Bilingual">
+<meta property="og:description" content="Digital invitation cards for Indian weddings, birthdays, and housewarmings. Photo upload, Hindi + English, PNG download. Free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paramjaiswal.github.io/union-project/products/invitation-maker/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Hind:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23f472b6'>💌</text></svg>">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-family: 'Roboto', sans-serif; -webkit-font-smoothing: antialiased; }
+body { background: #0f1020; color: #e0e0e0; line-height: 1.6; min-height: 100vh; }
+:root { --bg:#0f1020; --surface:#1a1b2e; --border:#333652; --text:#e0e0e0; --muted:#a0a0c0; --accent:#f472b6; --accent-hover:#ec4899; --shadow:0 8px 32px rgba(0,0,0,.3); }
+.container { width: min(92%, 1400px); margin-inline: auto; }
+.header { background: linear-gradient(135deg,#1a1b2e,#242642); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+.logo { font-weight: 700; font-size: 1.25rem; color: var(--accent); }
+.main { display: grid; grid-template-columns: 380px 1fr; gap: 1.5rem; padding: 1.5rem 0; }
+@media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow-y: auto; max-height: calc(100vh - 120px); }
+.panel h2 { font-size: 1.2rem; margin-bottom: .75rem; color: var(--accent); }
+.panel h3 { margin: 1.25rem 0 .5rem; color: var(--accent); font-size: .95rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+.fg { margin-bottom: 1rem; }
+.fg label { display: block; font-weight: 500; margin-bottom: .35rem; font-size: .83rem; }
+.fi { width: 100%; padding: .55rem .7rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: .92rem; font-family: inherit; }
+.fi:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(244,114,182,.2); }
+textarea.fi { resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border: none; border-radius: 6px; padding: .6rem 1.2rem; font-size: .95rem; font-weight: 500; cursor: pointer; transition: all .2s; font-family: inherit; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: #2d0a1e; font-weight: 600; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.themes { display: grid; grid-template-columns: repeat(2,1fr); gap: .6rem; }
+.theme-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; padding: .7rem .5rem; cursor: pointer; transition: all .2s; text-align: center; font-size: .85rem; color: var(--text); }
+.theme-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+.theme-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(244,114,182,.4); }
+.theme-btn .em { font-size: 1.6rem; display: block; margin-bottom: .2rem; }
+.upload { border: 2px dashed var(--border); border-radius: 8px; padding: 1.1rem 1rem; text-align: center; cursor: pointer; transition: all .2s; background: var(--bg); margin-bottom: 1rem; }
+.upload:hover { border-color: var(--accent); background: rgba(244,114,182,.05); }
+.upload .icon { font-size: 1.4rem; margin-bottom: .3rem; }
+.upload .txt { font-size: .82rem; color: var(--muted); }
+.preview-side { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.preview-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+.canvas-wrap { background: var(--surface); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; justify-content: center; }
+canvas { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+.export-bar { display: flex; gap: .75rem; justify-content: center; }
+.footer { text-align: center; padding: 1rem 0; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+#toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .75rem 1.25rem; font-size: .9rem; box-shadow: var(--shadow); opacity: 0; transform: translateY(20px); transition: all .3s; pointer-events: none; z-index: 1000; }
+#toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">💌 Invitation Card Maker</div>
+    <div class="export-bar">
+      <button class="btn btn-primary" id="downloadBtn">⬇ Download PNG</button>
+      <button class="btn btn-outline" id="resetBtn">⟲ Reset</button>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+  <aside class="panel">
+    <h2>Customize</h2>
+
+    <div class="fg">
+      <label>Event Theme</label>
+      <div class="themes" id="themeGrid"></div>
+    </div>
+
+    <h3>Event Details</h3>
+    <div class="fg">
+      <label for="eventTitle">Title (English)</label>
+      <input type="text" id="eventTitle" class="fi" value="You're Invited!">
+    </div>
+    <div class="fg">
+      <label for="eventTitleHindi">Title (हिन्दी)</label>
+      <input type="text" id="eventTitleHindi" class="fi" value="आप सादर आमंत्रित हैं">
+    </div>
+    <div class="fg">
+      <label for="namesLine">Names / Main Line</label>
+      <input type="text" id="namesLine" class="fi" placeholder="e.g., Ananya & Vikram">
+    </div>
+    <div class="row2">
+      <div class="fg">
+        <label for="eventDate">Date</label>
+        <input type="text" id="eventDate" class="fi" placeholder="e.g., Sunday, 25 Jan 2027">
+      </div>
+      <div class="fg">
+        <label for="eventTime">Time</label>
+        <input type="text" id="eventTime" class="fi" placeholder="e.g., 6:00 PM onwards">
+      </div>
+    </div>
+    <div class="fg">
+      <label for="venueLine">Venue</label>
+      <input type="text" id="venueLine" class="fi" placeholder="e.g., Grand Palace, Jaipur">
+    </div>
+    <div class="fg">
+      <label for="messageLine">Personal Message</label>
+      <textarea id="messageLine" class="fi" rows="2" placeholder="e.g., Join us as we celebrate this special day"></textarea>
+    </div>
+
+    <h3>Photo (optional)</h3>
+    <div class="upload" id="photoUploadArea">
+      <div class="icon">📷</div>
+      <div class="txt">Upload a photo (couple, baby, venue…)</div>
+      <input type="file" id="photoInput" accept="image/*" hidden>
+    </div>
+    <button class="btn btn-outline" id="clearPhotoBtn" style="display:none; margin-bottom:1rem;">✕ Remove Photo</button>
+
+    <h3>Colors</h3>
+    <div class="row2">
+      <div class="fg">
+        <label for="primaryColor">Primary</label>
+        <input type="color" id="primaryColor" value="#f472b6" class="fi" style="height:40px; padding:2px;">
+      </div>
+      <div class="fg">
+        <label for="bgColor">Background</label>
+        <input type="color" id="bgColor" value="#1a1b2e" class="fi" style="height:40px; padding:2px;">
+      </div>
+    </div>
+  </aside>
+
+  <section class="preview-side">
+    <div class="preview-header">
+      <h2 style="color: var(--accent);">🖼️ Preview</h2>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="inviteCanvas" width="800" height="1000"></canvas>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2024 Invitation Card Maker · Union Project · MIT License · Free, no watermark, 100% client-side</p>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script>
+'use strict';
+const THEMES = {
+  wedding:      { name: 'Wedding',      em: '💍', deco: 'hearts',  bg: ['#2d0a1e', '#4c0519'], accent: '#f472b6' },
+  birthday:     { name: 'Birthday',     em: '🎂', deco: 'balloons', bg: ['#172554', '#1e3a8a'], accent: '#60a5fa' },
+  housewarming: { name: 'Housewarming', em: '🏠', deco: 'flowers', bg: ['#1a2e1a', '#14532d'], accent: '#4ade80' },
+  babyshower:   { name: 'Baby Shower',  em: '🍼', deco: 'stars',   bg: ['#2e1a2e', '#4c1d4c'], accent: '#c084fc' },
+  anniversary:  { name: 'Anniversary',  em: '🥂', deco: 'hearts',  bg: ['#292524', '#44403c'], accent: '#fbbf24' },
+  graduation:   { name: 'Graduation',   em: '🎓', deco: 'confetti', bg: ['#0f172a', '#1e293b'], accent: '#38bdf8' },
+};
+
+const state = {
+  theme: 'wedding',
+  eventTitle: "You're Invited!",
+  eventTitleHindi: 'आप सादर आमंत्रित हैं',
+  namesLine: '',
+  eventDate: '', eventTime: '', venueLine: '', messageLine: '',
+  photo: null,
+  primaryColor: '#f472b6',
+  bgColor: '#1a1b2e',
+};
+
+const canvas = document.getElementById('inviteCanvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+function showToast(m, d = 2500) {
+  const t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), d);
+}
+
+function wrapCenter(text, y, font, color, maxW, lh) {
+  ctx.font = font; ctx.fillStyle = color;
+  const words = String(text).split(' ');
+  const lines = []; let line = '';
+  for (const w of words) {
+    const test = line + w + ' ';
+    if (ctx.measureText(test).width > maxW && line) { lines.push(line.trim()); line = w + ' '; }
+    else line = test;
+  }
+  lines.push(line.trim());
+  let yy = y - (lines.length * lh) / 2;
+  for (const l of lines) { ctx.fillText(l, W / 2, yy); yy += lh; }
+  return yy;
+}
+
+function drawDecorations() {
+  const t = THEMES[state.theme];
+  ctx.save(); ctx.globalAlpha = 0.5;
+  const palette = [state.primaryColor, t.accent, '#ffffff'];
+  for (let i = 0; i < 40; i++) {
+    const x = Math.random() * W, y = Math.random() * H;
+    const r = 2 + Math.random() * 6;
+    ctx.fillStyle = palette[i % palette.length];
+    if (t.deco === 'hearts') {
+      ctx.beginPath();
+      ctx.moveTo(x, y + r);
+      ctx.bezierCurveTo(x - r * 1.6, y - r * 0.6, x - r * 0.6, y - r * 1.6, x, y - r * 0.4);
+      ctx.bezierCurveTo(x + r * 0.6, y - r * 1.6, x + r * 1.6, y - r * 0.6, x, y + r);
+      ctx.fill();
+    } else if (t.deco === 'stars') {
+      ctx.font = (r * 3) + 'px serif'; ctx.fillText('✦', x, y);
+    } else if (t.deco === 'balloons') {
+      ctx.beginPath(); ctx.arc(x, y, r + 3, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = ctx.fillStyle; ctx.beginPath(); ctx.moveTo(x, y + r + 3); ctx.lineTo(x, y + r + 18); ctx.stroke();
+    } else if (t.deco === 'flowers') {
+      ctx.font = (r * 3.5) + 'px serif'; ctx.fillText('❀', x, y);
+    } else {
+      ctx.fillRect(x, y, r + 4, (r + 4) * 0.6);
+    }
+  }
+  ctx.globalAlpha = 1; ctx.restore();
+}
+
+function drawFrame() {
+  ctx.save();
+  ctx.strokeStyle = state.primaryColor; ctx.lineWidth = 3;
+  ctx.strokeRect(28, 28, W - 56, H - 56);
+  ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.lineWidth = 1;
+  ctx.strokeRect(40, 40, W - 80, H - 80);
+  ctx.restore();
+}
+
+function render() {
+  const t = THEMES[state.theme];
+  const grd = ctx.createLinearGradient(0, 0, 0, H);
+  grd.addColorStop(0, state.bgColor);
+  grd.addColorStop(1, t.bg[1]);
+  ctx.fillStyle = grd; ctx.fillRect(0, 0, W, H);
+  drawDecorations();
+  drawFrame();
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  let y = 170;
+
+  ctx.font = "64px 'Great Vibes', cursive";
+  ctx.fillStyle = state.primaryColor;
+  ctx.fillText(t.em + '  ' + state.eventTitle, W / 2, y); y += 70;
+
+  if (state.eventTitleHindi) {
+    ctx.font = "700 34px 'Hind', sans-serif";
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillText(state.eventTitleHindi, W / 2, y); y += 80;
+  } else y += 40;
+
+  if (state.photo) {
+    const img = state.photo;
+    const size = 300;
+    const ar = img.width / img.height;
+    let dw = size, dh = size / ar;
+    if (dh > size) { dh = size; dw = size * ar; }
+    ctx.save();
+    ctx.beginPath(); ctx.arc(W / 2, y + dh / 2, Math.max(dw, dh) / 2 + 10, 0, Math.PI * 2);
+    ctx.strokeStyle = state.primaryColor; ctx.lineWidth = 4; ctx.stroke();
+    ctx.drawImage(img, W / 2 - dw / 2, y, dw, dh);
+    ctx.restore();
+    y += dh + 60;
+  }
+
+  if (state.namesLine) {
+    ctx.font = "700 56px 'Great Vibes', cursive";
+    y = wrapCenter(state.namesLine, y, ctx.font, '#ffffff', W - 120, 62) + 40;
+  }
+
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  if (state.eventDate) {
+    ctx.font = "700 30px 'Roboto', sans-serif";
+    ctx.fillText('📅  ' + state.eventDate, W / 2, y); y += 48;
+  }
+  if (state.eventTime) {
+    ctx.font = "400 26px 'Roboto', sans-serif";
+    ctx.fillText('🕐  ' + state.eventTime, W / 2, y); y += 46;
+  }
+  if (state.venueLine) {
+    ctx.font = "400 26px 'Roboto', sans-serif";
+    ctx.fillText('📍  ' + state.venueLine, W / 2, y); y += 52;
+  }
+  if (state.messageLine) {
+    ctx.font = "italic 400 22px 'Roboto', sans-serif";
+    wrapCenter(state.messageLine, Math.min(y + 10, H - 120), ctx.font, 'rgba(255,255,255,0.7)', W - 140, 32);
+  }
+
+  ctx.font = "400 16px 'Roboto', sans-serif";
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.fillText('Made with Union Project Invitation Maker', W / 2, H - 60);
+}
+
+async function renderWithFonts() {
+  if (document.fonts && document.fonts.ready) await document.fonts.ready;
+  render();
+}
+
+function handlePhoto(file) {
+  if (!file || !file.type.startsWith('image/')) { showToast('Please choose an image file.'); return; }
+  if (file.size > 3 * 1024 * 1024) { showToast('Photo too large (max 3 MB).'); return; }
+  const img = new Image();
+  img.onload = () => {
+    state.photo = img;
+    document.getElementById('clearPhotoBtn').style.display = 'inline-flex';
+    renderWithFonts();
+  };
+  img.onerror = () => showToast('Failed to load that photo.');
+  img.src = URL.createObjectURL(file);
+}
+
+function downloadPNG() {
+  const link = document.createElement('a');
+  link.download = 'invitation-' + state.theme + '-' + Date.now() + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+  showToast('✓ Downloaded as PNG!');
+}
+
+function resetAll() {
+  state.theme = 'wedding';
+  state.eventTitle = "You're Invited!";
+  state.eventTitleHindi = 'आप सादर आमंत्रित हैं';
+  state.namesLine = ''; state.eventDate = ''; state.eventTime = '';
+  state.venueLine = ''; state.messageLine = '';
+  state.photo = null; state.primaryColor = '#f472b6'; state.bgColor = '#1a1b2e';
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === 'wedding'));
+  ['eventTitle','eventTitleHindi','namesLine','eventDate','eventTime','venueLine','messageLine'].forEach(id => {
+    document.getElementById(id).value = state[id];
+  });
+  document.getElementById('primaryColor').value = state.primaryColor;
+  document.getElementById('bgColor').value = state.bgColor;
+  document.getElementById('clearPhotoBtn').style.display = 'none';
+  renderWithFonts();
+  showToast('Reset.');
+}
+
+function init() {
+  // Theme grid
+  const grid = document.getElementById('themeGrid');
+  Object.entries(THEMES).forEach(([key, t]) => {
+    const btn = document.createElement('button');
+    btn.className = 'theme-btn' + (key === state.theme ? ' active' : '');
+    btn.dataset.theme = key;
+    btn.innerHTML = '<span class="em">' + t.em + '</span>' + t.name;
+    btn.addEventListener('click', () => {
+      state.theme = key;
+      state.primaryColor = t.accent;
+      document.getElementById('primaryColor').value = t.accent;
+      document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === key));
+      renderWithFonts();
+    });
+    grid.appendChild(btn);
+  });
+
+  // Text inputs
+  ['eventTitle','eventTitleHindi','namesLine','eventDate','eventTime','venueLine','messageLine'].forEach(id => {
+    document.getElementById(id).addEventListener('input', e => { state[id] = e.target.value; renderWithFonts(); });
+  });
+  document.getElementById('primaryColor').addEventListener('input', e => { state.primaryColor = e.target.value; renderWithFonts(); });
+  document.getElementById('bgColor').addEventListener('input', e => { state.bgColor = e.target.value; renderWithFonts(); });
+
+  // Photo upload
+  const photoInput = document.getElementById('photoInput');
+  const photoArea = document.getElementById('photoUploadArea');
+  photoArea.addEventListener('click', () => photoInput.click());
+  photoArea.addEventListener('drop', e => {
+    e.preventDefault();
+    if (e.dataTransfer.files.length > 0) handlePhoto(e.dataTransfer.files[0]);
+  });
+  ['dragenter','dragover','dragleave','drop'].forEach(evt => {
+    photoArea.addEventListener(evt, e => { e.preventDefault(); e.stopPropagation(); });
+  });
+  photoInput.addEventListener('change', e => {
+    if (e.target.files.length > 0) handlePhoto(e.target.files[0]);
+  });
+  document.getElementById('clearPhotoBtn').addEventListener('click', () => {
+    state.photo = null;
+    document.getElementById('clearPhotoBtn').style.display = 'none';
+    renderWithFonts();
+  });
+
+  // Buttons
+  document.getElementById('downloadBtn').addEventListener('click', downloadPNG);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+  renderWithFonts();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
+

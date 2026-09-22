@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice & Quotation Generator — Free, GST-Ready, PDF Export</title>
+<meta name="description" content="Create professional invoices and quotations with GST fields, logo, and PDF export. Free, client-side, no signup. Built for Indian freelancers and small businesses.">
+<meta property="og:title" content="Invoice & Quotation Generator — Free, GST-Ready">
+<meta property="og:description" content="Professional invoices and quotations with GST, logo upload, and PDF export. 100% free, runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paramjaiswal.github.io/union-project/products/invoice-generator/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2334d399'>🧾</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">🧾 Invoice & Quotation Generator</div>
+    <nav class="nav">
+      <button class="nav-btn active" data-tab="editor">Editor</button>
+      <button class="nav-btn" data-tab="about">About</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container main">
+  <aside class="controls-section">
+    <div class="tab-content active" id="editorTab">
+      <h2>Document Setup</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="docType">Document Type</label>
+          <select id="docType" class="form-input">
+            <option value="invoice">Invoice</option>
+            <option value="quotation">Quotation</option>
+            <option value="estimate">Estimate</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="docNumber">Number</label>
+          <input type="text" id="docNumber" class="form-input" value="INV-001">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="docDate">Date</label>
+          <input type="date" id="docDate" class="form-input">
+        </div>
+        <div class="form-group">
+          <label for="docDue">Due / Valid Until</label>
+          <input type="date" id="docDue" class="form-input">
+        </div>
+      </div>
+
+      <h3 class="section-h">Your Business</h3>
+      <div class="form-group">
+        <label for="bizName">Business Name *</label>
+        <input type="text" id="bizName" class="form-input" placeholder="e.g., PixelCraft Studio">
+      </div>
+      <div class="form-group">
+        <label for="bizDetails">Address / Contact / GSTIN (one per line)</label>
+        <textarea id="bizDetails" class="form-input" rows="3" placeholder="12, MI Road, Jaipur 302001&#10;+91 98765 43210&#10;GSTIN: 08ABCDE1234F1Z5"></textarea>
+      </div>
+      <div class="upload-area" id="logoUploadArea">
+        <div class="upload-icon">🧾</div>
+        <div class="upload-text">Upload business logo (optional)</div>
+        <input type="file" id="logoFileInput" accept="image/*" hidden>
+      </div>
+
+      <h3 class="section-h">Client</h3>
+      <div class="form-group">
+        <label for="clientName">Client Name *</label>
+        <input type="text" id="clientName" class="form-input" placeholder="e.g., Sharma Traders">
+      </div>
+      <div class="form-group">
+        <label for="clientDetails">Client Address / Contact</label>
+        <textarea id="clientDetails" class="form-input" rows="2" placeholder="Client address, phone, email"></textarea>
+      </div>
+
+      <h3 class="section-h">Line Items</h3>
+      <div class="form-row form-row-items">
+        <input type="text" id="itemDesc" class="form-input" placeholder="Item / service description">
+        <input type="number" id="itemQty" class="form-input" placeholder="Qty" value="1" min="0" step="0.5">
+        <input type="number" id="itemRate" class="form-input" placeholder="Rate ₹" min="0">
+        <button class="btn btn-primary" id="addItemBtn">+ Add</button>
+      </div>
+      <div class="item-list" id="itemList">
+        <p class="text-secondary" style="text-align:center; padding:0.75rem 0;">No items yet.</p>
+      </div>
+
+      <h3 class="section-h">Totals</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="gstRate">GST %</label>
+          <select id="gstRate" class="form-input">
+            <option value="0">No GST</option>
+            <option value="5">5%</option>
+            <option value="12">12%</option>
+            <option value="18" selected>18%</option>
+            <option value="28">28%</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="discount">Discount (₹)</label>
+          <input type="number" id="discount" class="form-input" value="0" min="0">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tab-content" id="aboutTab">
+      <h2>About</h2>
+      <div class="about-content">
+        <p>🧾 <strong>Invoice & Quotation Generator</strong> creates professional,
+        GST-ready invoices, quotations, and estimates — entirely in your browser.</p>
+        <ul class="feature-list">
+          <li>Invoice / Quotation / Estimate modes</li>
+          <li>Logo upload, business & client details</li>
+          <li>Line items with quantity × rate</li>
+          <li>GST at 5/12/18/28% + discounts</li>
+          <li>One-click PDF export (A4)</li>
+          <li>100% client-side — your data never leaves your device</li>
+        </ul>
+        <p class="text-secondary">Part of <a href="../../">Union Project</a> · MIT License</p>
+      </div>
+    </div>
+  </aside>
+
+  <section class="preview-section">
+    <div class="preview-header">
+      <h2 style="color: var(--accent);">🧾 Preview</h2>
+      <div class="export-bar">
+        <button class="btn btn-primary" id="downloadPdfBtn">â¬‡ Download PDF</button>
+        <button class="btn btn-outline" id="resetBtn">âŸ² Reset</button>
+      </div>
+    </div>
+    <div class="canvas-wrapper">
+      <div id="invoiceDoc" class="invoice-doc"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2024 Invoice & Quotation Generator · Union Project · MIT License · No signup, no watermarks</p>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>

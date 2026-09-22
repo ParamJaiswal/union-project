@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Card Maker — Free Price List Generator (PNG)</title>
+<meta name="description" content="Create a professional rate card / price list for your services in minutes. Add services with prices, custom colors, download as PNG. Free, no signup, no watermarks.">
+<meta property="og:title" content="Rate Card Maker — Free Price List Generator">
+<meta property="og:description" content="Professional rate cards for freelancers, salons, photographers. Custom colors, PNG download. Free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paramjaiswal.github.io/union-project/products/rate-card-maker/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Hind:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23fbbf24'>📋</text></svg>">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-family: 'Roboto', sans-serif; -webkit-font-smoothing: antialiased; }
+body { background: #0f1020; color: #e0e0e0; line-height: 1.6; min-height: 100vh; }
+:root { --bg:#0f1020; --surface:#1a1b2e; --border:#333652; --text:#e0e0e0; --muted:#a0a0c0; --accent:#fbbf24; --shadow:0 8px 32px rgba(0,0,0,.3); }
+.container { width: min(92%, 1400px); margin-inline: auto; }
+.header { background: linear-gradient(135deg,#1a1b2e,#242642); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+.logo { font-weight: 700; font-size: 1.25rem; color: var(--accent); }
+.main { display: grid; grid-template-columns: 380px 1fr; gap: 1.5rem; padding: 1.5rem 0; }
+@media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow-y: auto; max-height: calc(100vh - 120px); }
+.panel h2 { font-size: 1.2rem; margin-bottom: .75rem; color: var(--accent); }
+.panel h3 { margin: 1.25rem 0 .5rem; color: var(--accent); font-size: .95rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+.fg { margin-bottom: 1rem; }
+.fg label { display: block; font-weight: 500; margin-bottom: .35rem; font-size: .83rem; }
+.fi { width: 100%; padding: .55rem .7rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: .92rem; font-family: inherit; }
+.fi:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(251,191,36,.2); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border: none; border-radius: 6px; padding: .6rem 1.2rem; font-size: .95rem; font-weight: 500; cursor: pointer; transition: all .2s; font-family: inherit; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: #2d1a00; font-weight: 600; }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.item-row { display: grid; grid-template-columns: 1fr auto auto; gap: .5rem; align-items: center; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: .55rem .75rem; margin-bottom: .5rem; font-size: .87rem; }
+.item-row .ir-del { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1rem; }
+.item-row .ir-amt { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.preview-side { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.preview-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+.canvas-wrap { background: var(--surface); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; justify-content: center; }
+canvas { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+.export-bar { display: flex; gap: .75rem; justify-content: center; }
+.footer { text-align: center; padding: 1rem 0; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+#toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .75rem 1.25rem; font-size: .9rem; box-shadow: var(--shadow); opacity: 0; transform: translateY(20px); transition: all .3s; pointer-events: none; z-index: 1000; }
+#toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">📋 Rate Card Maker</div>
+    <div class="export-bar">
+      <button class="btn btn-primary" id="downloadBtn">⬇ Download PNG</button>
+      <button class="btn btn-outline" id="resetBtn">⟲ Reset</button>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+  <aside class="panel">
+    <h2>Business</h2>
+    <div class="fg"><label for="bizName">Business / Your Name *</label><input type="text" id="bizName" class="fi" placeholder="e.g., Priya Photography"></div>
+    <div class="fg"><label for="tagline">Tagline</label><input type="text" id="tagline" class="fi" placeholder="e.g., Professional shoots, honest pricing"></div>
+    <div class="fg"><label for="contactLine">Contact (phone / WhatsApp / email)</label><input type="text" id="contactLine" class="fi" placeholder="e.g., +91 98765 43210 · @priyaphotos"></div>
+
+    <h3>Services & Prices</h3>
+    <div class="row2" style="margin-bottom:.5rem;">
+      <input type="text" id="svcName" class="fi" placeholder="Service (e.g., Portrait shoot)">
+      <div style="display:grid; grid-template-columns:1fr auto; gap:.5rem;">
+        <input type="number" id="svcPrice" class="fi" placeholder="₹ Price" min="0">
+        <button class="btn btn-primary" id="addSvcBtn">+</button>
+      </div>
+    </div>
+    <div id="svcList"></div>
+
+    <h3>Custom Lines</h3>
+    <div class="fg"><label for="customLines">Extra lines shown below services (one per line)</label>
+      <textarea id="customLines" class="fi" rows="2" placeholder="e.g., Travel charges extra outside city&#10;50% advance to confirm booking"></textarea></div>
+
+    <h3>Colors</h3>
+    <div class="row2">
+      <div class="fg"><label for="accentColor">Accent</label><input type="color" id="accentColor" value="#fbbf24" class="fi" style="height:40px; padding:2px;"></div>
+      <div class="fg"><label for="bgColor">Background</label><input type="color" id="bgColor" value="#111827" class="fi" style="height:40px; padding:2px;"></div>
+    </div>
+  </aside>
+
+  <section class="preview-side">
+    <div class="preview-header"><h2 style="color: var(--accent);">🖼️ Preview</h2></div>
+    <div class="canvas-wrap">
+      <canvas id="cardCanvas" width="800" height="1000"></canvas>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container"><p>© 2024 Rate Card Maker · Union Project · MIT License · Free, no watermark, 100% client-side</p></div>
+</footer>
+
+<div id="toast"></div>
+<script>
+'use strict';
+const state = {
+  bizName: '', tagline: '', contactLine: '',
+  services: [], // { id, name, price }
+  customLines: '',
+  accent: '#fbbf24', bg: '#111827',
+};
+let svcId = 1;
+
+const canvas = document.getElementById('cardCanvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function showToast(m, d = 2500) {
+  const t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), d);
+}
+function fmt(n) { return '₹' + Number(n).toLocaleString('en-IN'); }
+
+function addService() {
+  const name = document.getElementById('svcName').value.trim();
+  const price = parseFloat(document.getElementById('svcPrice').value);
+  if (!name) { showToast('Enter a service name.'); return; }
+  if (isNaN(price) || price < 0) { showToast('Enter a valid price.'); return; }
+  state.services.push({ id: svcId++, name, price });
+  document.getElementById('svcName').value = '';
+  document.getElementById('svcPrice').value = '';
+  document.getElementById('svcName').focus();
+  renderSvcList(); render();
+}
+
+function renderSvcList() {
+  const list = document.getElementById('svcList');
+  if (state.services.length === 0) {
+    list.innerHTML = '<p style="text-align:center; color:var(--muted); font-size:.85rem; padding:.5rem 0;">No services yet.</p>';
+    return;
+  }
+  list.innerHTML = state.services.map(s =>
+    '<div class="item-row"><span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="' + esc(s.name) + '">' + esc(s.name) + '</span>' +
+    '<span class="ir-amt">' + fmt(s.price) + '</span>' +
+    '<button class="ir-del" data-id="' + s.id + '">✕</button></div>').join('');
+  list.querySelectorAll('.ir-del').forEach(btn =>
+    btn.addEventListener('click', () => {
+      state.services = state.services.filter(s => s.id !== parseInt(btn.dataset.id));
+      renderSvcList(); render();
+    }));
+}
+
+function render() {
+  // Background
+  ctx.fillStyle = state.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Accent border frame
+  ctx.strokeStyle = state.accent; ctx.lineWidth = 4;
+  ctx.strokeRect(30, 30, W - 60, H - 60);
+  ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 1;
+  ctx.strokeRect(42, 42, W - 84, H - 84);
+
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+
+  // Header
+  ctx.font = "700 52px 'Roboto', sans-serif";
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText(state.bizName || 'Your Business', W / 2, 130);
+  if (state.tagline) {
+    ctx.font = "italic 400 24px 'Roboto', sans-serif";
+    ctx.fillStyle = 'rgba(255,255,255,0.75)';
+    ctx.fillText(state.tagline, W / 2, 185);
+  }
+  // Divider
+  ctx.strokeStyle = state.accent; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(W / 2 - 120, 225); ctx.lineTo(W / 2 + 120, 225); ctx.stroke();
+
+  // "RATE CARD" label
+  ctx.font = "700 22px 'Roboto', sans-serif";
+  ctx.fillStyle = state.accent;
+  ctx.fillText('—  RATE CARD  —', W / 2, 275);
+
+  // Services
+  let y = 340;
+  if (state.services.length === 0) {
+    ctx.font = "400 24px 'Roboto', sans-serif";
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.fillText('Add your services to see them here', W / 2, y);
+    y += 60;
+  } else {
+    const rowH = 72;
+    state.services.forEach((s, i) => {
+      if (i % 2 === 0) {
+        ctx.fillStyle = 'rgba(255,255,255,0.04)';
+        ctx.fillRect(90, y - 28, W - 180, rowH - 12);
+      }
+      ctx.textAlign = 'left';
+      ctx.font = "500 26px 'Roboto', sans-serif";
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(s.name, 110, y);
+      ctx.textAlign = 'right';
+      ctx.font = "700 26px 'Roboto', sans-serif";
+      ctx.fillStyle = state.accent;
+      ctx.fillText(fmt(s.price), W - 110, y);
+      // dotted leader
+      ctx.textAlign = 'center';
+      y += rowH;
+    });
+  }
+
+  // Custom lines
+  const lines = state.customLines.split('\n').map(l => l.trim()).filter(Boolean);
+  if (lines.length > 0) {
+    y += 20;
+    ctx.font = "italic 400 20px 'Roboto', sans-serif";
+    ctx.fillStyle = 'rgba(255,255,255,0.65)';
+    lines.forEach(l => { ctx.fillText(l, W / 2, y); y += 38; });
+  }
+
+  // Contact
+  ctx.fillStyle = state.accent;
+  ctx.fillRect(W / 2 - 100, H - 150, 200, 3);
+  ctx.font = "500 24px 'Roboto', sans-serif";
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText(state.contactLine || 'Add your contact info', W / 2, H - 105);
+
+  ctx.font = "400 15px 'Roboto', sans-serif";
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.fillText('Made with Union Project Rate Card Maker', W / 2, H - 60);
+}
+
+function downloadPNG() {
+  const link = document.createElement('a');
+  link.download = 'rate-card-' + Date.now() + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+  showToast('✓ Downloaded as PNG!');
+}
+
+function resetAll() {
+  state.bizName = ''; state.tagline = ''; state.contactLine = '';
+  state.services = []; state.customLines = '';
+  state.accent = '#fbbf24'; state.bg = '#111827';
+  ['bizName','tagline','contactLine','svcName','svcPrice','customLines'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('accentColor').value = state.accent;
+  document.getElementById('bgColor').value = state.bg;
+  renderSvcList(); render();
+  showToast('Reset.');
+}
+
+function init() {
+  ['bizName','tagline','contactLine','customLines'].forEach(id => {
+    document.getElementById(id).addEventListener('input', e => { state[id] = e.target.value; render(); });
+  });
+  document.getElementById('accentColor').addEventListener('input', e => { state.accent = e.target.value; render(); });
+  document.getElementById('bgColor').addEventListener('input', e => { state.bg = e.target.value; render(); });
+  document.getElementById('addSvcBtn').addEventListener('click', addService);
+  ['svcName','svcPrice'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') addService(); });
+  });
+  document.getElementById('downloadBtn').addEventListener('click', downloadPNG);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

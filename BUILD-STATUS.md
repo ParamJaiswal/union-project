@@ -5,13 +5,15 @@
 
 ## Current product
 
-- **product:** none — all 4 products are built
+- **product:** none — all 8 products are built
 - **phase:** complete
-- **last_completed:** landing-pages (gallery + 3 templates, all verified:
-  balanced divs, no broken anchors/links, countdown JS passes `node --check`,
-  4 pages serve HTTP 200) and prompt-library (storefront + 4 real prompt pack
-  files totalling 160 prompts, all claims corrected to match actual counts,
-  5 pages/files serve HTTP 200).
+- **last_completed:** added 4 fast-money products (researched via web search:
+  invoice/quote generators and digital invites are top-selling categories):
+  invoice-generator (multi-file, GST + logo + PDF), invitation-maker
+  (single-file canvas, 6 themes, Hindi+English, photo, PNG), resume-builder
+  (single-file, dynamic entries, PDF), rate-card-maker (single-file canvas,
+  services list, PNG). All verified: JS passes node --check, all element ids
+  present, divs balanced, mojibake repaired in invoice HTML.
 - **next_step (selling, optional):** follow **MONETIZATION-GUIDE.md** —
   set up Instamojo, create the 4 pack listings, then send the checkout URLs
   to wire into the storefront buy buttons. Playbook for first customers is in

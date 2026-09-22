@@ -12,6 +12,10 @@ GitHub Pages.
 | 2 | [Catalogue PDF Builder](https://paramjaiswal.github.io/union-project/products/catalogue-builder/) | Product catalogues from CSV/JSON with images, prices, PDF export | ✅ Live |
 | 3 | [Landing Page Template Pack](https://paramjaiswal.github.io/union-project/products/landing-pages/) | 3 single-file templates: SaaS, local business, event | ✅ Live |
 | 4 | [Prompt Library Storefront](https://paramjaiswal.github.io/union-project/products/prompt-library/) | Storefront selling 4 AI prompt packs (160 prompts) via Gumroad/Instamojo | ✅ Live |
+| 5 | [Invoice & Quotation Generator](https://paramjaiswal.github.io/union-project/products/invoice-generator/) | GST-ready invoices/quotations with logo, PDF export | ✅ Live |
+| 6 | [Invitation Card Maker](https://paramjaiswal.github.io/union-project/products/invitation-maker/) | Wedding/birthday/housewarming invites, Hindi+English, PNG export | ✅ Live |
+| 7 | [Resume Builder](https://paramjaiswal.github.io/union-project/products/resume-builder/) | Professional resume with live preview, PDF export | ✅ Live |
+| 8 | [Rate Card Maker](https://paramjaiswal.github.io/union-project/products/rate-card-maker/) | Price lists for freelancers/salons/photographers, PNG export | ✅ Live |
 
 ## Architecture
 
@@ -27,13 +31,18 @@ GitHub Pages.
 ├── 404.html                      # branded 404 (GitHub Pages)
 ├── robots.txt / sitemap.xml      # SEO basics
 ├── LICENSE                       # MIT (site code; prompt packs excluded)
+├── MONETIZATION-GUIDE.md         # how to earn with these products
 ├── BUILD-STATUS.md               # build-state tracker for the continue-build skill
 ├── .cline/skills/                # agent skills (continue-build, auto-switch-model)
 └── products/
-    ├── festival-greeting/
-    ├── catalogue-builder/
+    ├── festival-greeting/        # canvas greeting cards (free tool)
+    ├── catalogue-builder/        # PDF catalogues (free tool)
     ├── landing-pages/            # + templates/{saas,local-business,event}
-    └── prompt-library/           # storefront; paid packs in packs/ (not published)
+    ├── prompt-library/           # storefront; paid packs in packs/ (not published)
+    ├── invoice-generator/        # GST invoices/quotes (free tool)
+    ├── invitation-maker/         # event invites (free tool)
+    ├── resume-builder/           # resumes (free tool)
+    └── rate-card-maker/          # price lists (free tool)
 ```
 
 ## Making money with this repo

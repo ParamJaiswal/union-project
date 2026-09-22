@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Builder — Free PDF Resume in Minutes</title>
+<meta name="description" content="Build a clean, professional resume and download as PDF. Free, no signup, no watermarks, 100% in your browser. Perfect for students and freshers.">
+<meta property="og:title" content="Resume Builder — Free PDF Resume">
+<meta property="og:description" content="Clean, professional resume with live preview and PDF export. Free, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paramjaiswal.github.io/union-project/products/resume-builder/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2338bdf8'>📄</text></svg>">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-family: 'Roboto', sans-serif; -webkit-font-smoothing: antialiased; }
+body { background: #0f1020; color: #e0e0e0; line-height: 1.6; min-height: 100vh; }
+:root { --bg:#0f1020; --surface:#1a1b2e; --border:#333652; --text:#e0e0e0; --muted:#a0a0c0; --accent:#38bdf8; --shadow:0 8px 32px rgba(0,0,0,.3); }
+.container { width: min(92%, 1400px); margin-inline: auto; }
+.header { background: linear-gradient(135deg,#1a1b2e,#242642); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+.logo { font-weight: 700; font-size: 1.25rem; color: var(--accent); }
+.main { display: grid; grid-template-columns: 400px 1fr; gap: 1.5rem; padding: 1.5rem 0; }
+@media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow-y: auto; max-height: calc(100vh - 120px); }
+.panel h2 { font-size: 1.2rem; margin-bottom: .75rem; color: var(--accent); }
+.panel h3 { margin: 1.25rem 0 .5rem; color: var(--accent); font-size: .95rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+.fg { margin-bottom: 1rem; }
+.fg label { display: block; font-weight: 500; margin-bottom: .35rem; font-size: .83rem; }
+.fi { width: 100%; padding: .55rem .7rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: .92rem; font-family: inherit; }
+.fi:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(56,189,248,.2); }
+textarea.fi { resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border: none; border-radius: 6px; padding: .6rem 1.2rem; font-size: .95rem; font-weight: 500; cursor: pointer; transition: all .2s; font-family: inherit; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: #06281f; font-weight: 600; }
+.btn-primary:hover { box-shadow: 0 4px 16px rgba(56,189,248,.3); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.entry { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: .9rem; margin-bottom: .75rem; }
+.entry .efg { margin-bottom: .6rem; }
+.entry label { font-size: .78rem; color: var(--muted); display: block; margin-bottom: .2rem; }
+.entry-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
+.entry-head strong { font-size: .85rem; color: var(--accent); }
+.del-btn { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1rem; padding: .1rem .3rem; }
+.del-btn:hover { transform: scale(1.2); }
+.preview-side { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.preview-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+.export-bar { display: flex; gap: .75rem; }
+.doc-wrap { background: var(--surface); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow: auto; }
+.footer { text-align: center; padding: 1rem 0; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+#toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .75rem 1.25rem; font-size: .9rem; box-shadow: var(--shadow); opacity: 0; transform: translateY(20px); transition: all .3s; pointer-events: none; z-index: 1000; }
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">📄 Resume Builder</div>
+    <div class="export-bar">
+      <button class="btn btn-primary" id="downloadBtn">⬇ Download PDF</button>
+      <button class="btn btn-outline" id="resetBtn">⟲ Reset</button>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+  <aside class="panel">
+    <h2>Your Details</h2>
+    <div class="row2">
+      <div class="fg"><label for="fullName">Full Name *</label><input type="text" id="fullName" class="fi" placeholder="e.g., Priya Sharma"></div>
+      <div class="fg"><label for="jobTitle">Title</label><input type="text" id="jobTitle" class="fi" placeholder="e.g., Frontend Developer"></div>
+    </div>
+    <div class="row2">
+      <div class="fg"><label for="phone">Phone</label><input type="text" id="phone" class="fi" placeholder="+91 98765 43210"></div>
+      <div class="fg"><label for="email">Email</label><input type="text" id="email" class="fi" placeholder="priya@email.com"></div>
+    </div>
+    <div class="row2">
+      <div class="fg"><label for="location">Location</label><input type="text" id="location" class="fi" placeholder="Jaipur, India"></div>
+      <div class="fg"><label for="links">LinkedIn / GitHub / Portfolio</label><input type="text" id="links" class="fi" placeholder="linkedin.com/in/priya"></div>
+    </div>
+
+    <h3>Summary</h3>
+    <div class="fg"><textarea id="summary" class="fi" rows="3" placeholder="2–3 lines about your strengths and goals"></textarea></div>
+
+    <h3>Experience</h3>
+    <div id="expList"></div>
+    <button class="btn btn-outline" id="addExpBtn" style="margin-bottom:1rem;">+ Add Experience</button>
+
+    <h3>Education</h3>
+    <div id="eduList"></div>
+    <button class="btn btn-outline" id="addEduBtn" style="margin-bottom:1rem;">+ Add Education</button>
+
+    <h3>Skills</h3>
+    <div class="fg"><textarea id="skills" class="fi" rows="2" placeholder="Comma-separated: JavaScript, React, Figma, SEO"></textarea></div>
+
+    <h3>Accent Color</h3>
+    <div class="fg"><input type="color" id="accentColor" value="#0ea5e9" class="fi" style="height:40px; padding:2px;"></div>
+  </aside>
+
+  <section class="preview-side">
+    <div class="preview-header">
+      <h2 style="color: var(--accent);">📄 Live Preview</h2>
+    </div>
+    <div class="doc-wrap">
+      <div id="resumeDoc" style="background:#fff; color:#1a1a2e; min-height:800px; padding:2.5rem 2rem; border-radius:8px;"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container"><p>© 2024 Resume Builder · Union Project · MIT License · Free, no watermark, 100% client-side</p></div>
+</footer>
+
+<div id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script>
+'use strict';
+const state = {
+  fullName: '', jobTitle: '', phone: '', email: '', location: '', links: '',
+  summary: '',
+  exp: [], edu: [],
+  skills: '',
+  accent: '#0ea5e9',
+};
+let entryId = 1;
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function showToast(m, d = 2500) {
+  const t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), d);
+}
+
+function expEntryHTML(e) {
+  return '<div class="entry" data-id="' + e.id + '">' +
+    '<div class="entry-head"><strong>Experience</strong><button class="del-btn" data-type="exp">✕</button></div>' +
+    '<div class="efg"><label>Job Title</label><input class="fi e-role" type="text" placeholder="e.g., Web Developer Intern"></div>' +
+    '<div class="row2"><div class="efg"><label>Company</label><input class="fi e-company" type="text" placeholder="e.g., TCS"></div>' +
+    '<div class="efg"><label>Dates</label><input class="fi e-dates" type="text" placeholder="e.g., Jun 2024 – Dec 2024"></div></div>' +
+    '<div class="efg"><label>Achievements (one per line)</label><textarea class="fi e-bullets" rows="3" placeholder="Built the company website&#10;Improved load time by 40%"></textarea></div></div>';
+}
+function eduEntryHTML(e) {
+  return '<div class="entry" data-id="' + e.id + '">' +
+    '<div class="entry-head"><strong>Education</strong><button class="del-btn" data-type="edu">✕</button></div>' +
+    '<div class="efg"><label>Degree / Course</label><input class="fi d-degree" type="text" placeholder="e.g., B.Tech Computer Science"></div>' +
+    '<div class="row2"><div class="efg"><label>Institution</label><input class="fi d-inst" type="text" placeholder="e.g., RTU Kota"></div>' +
+    '<div class="efg"><label>Year</label><input class="fi d-year" type="text" placeholder="e.g., 2020 – 2024"></div></div></div>';
+}
+
+function wireEntry(node, obj, fields) {
+  Object.entries(fields).forEach(([key, sel]) => {
+    node.querySelector(sel).addEventListener('input', ev => { obj[key] = ev.target.value; render(); });
+  });
+  node.querySelector('.del-btn').addEventListener('click', () => {
+    if (node.dataset.type === 'exp') state.exp = state.exp.filter(x => x.id !== obj.id);
+    else state.edu = state.edu.filter(x => x.id !== obj.id);
+    node.remove();
+    render();
+  });
+}
+
+function addExp() {
+  const e = { id: entryId++, role: '', company: '', dates: '', bullets: '' };
+  state.exp.push(e);
+  const list = document.getElementById('expList');
+  list.insertAdjacentHTML('beforeend', expEntryHTML(e));
+  wireEntry(list.lastElementChild, e, { role:'.e-role', company:'.e-company', dates:'.e-dates', bullets:'.e-bullets' });
+}
+
+function addEdu() {
+  const e = { id: entryId++, degree: '', institution: '', year: '' };
+  state.edu.push(e);
+  const list = document.getElementById('eduList');
+  list.insertAdjacentHTML('beforeend', eduEntryHTML(e));
+  wireEntry(list.lastElementChild, e, { degree:'.d-degree', institution:'.d-inst', year:'.d-year' });
+}
+
+function contactLine() {
+  const parts = [state.phone, state.email, state.location, state.links].filter(Boolean);
+  return parts.map(p => '<span>' + esc(p) + '</span>').join('<span style="margin:0 .5rem; opacity:.5">|</span>');
+}
+
+function render() {
+  const expHtml = state.exp.map(e => {
+    const bullets = (e.bullets || '').split('\n').map(b => b.trim()).filter(Boolean)
+      .map(b => '<li>' + esc(b.replace(/^[-•*]\s*/, '')) + '</li>').join('');
+    return '<div style="margin-bottom:1rem;"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:.25rem;">' +
+      '<strong>' + esc(e.role || 'Role') + (e.company ? ' · ' + esc(e.company) : '') + '</strong>' +
+      '<span style="color:#6b7280; font-size:.85rem;">' + esc(e.dates) + '</span></div>' +
+      (bullets ? '<ul style="margin:.4rem 0 0 1.2rem; color:#374151;">' + bullets + '</ul>' : '') + '</div>';
+  }).join('');
+
+  const eduHtml = state.edu.map(e =>
+    '<div style="margin-bottom:.75rem;"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:.25rem;">' +
+    '<strong>' + esc(e.degree || 'Degree') + '</strong>' +
+    '<span style="color:#6b7280; font-size:.85rem;">' + esc(e.year) + '</span></div>' +
+    (e.institution ? '<div style="color:#374151;">' + esc(e.institution) + '</div>' : '') + '</div>').join('');
+
+  const skillsHtml = state.skills.split(',').map(s => s.trim()).filter(Boolean)
+    .map(s => '<span style="display:inline-block; background:#f1f5f9; color:#1e293b; padding:.25rem .7rem; border-radius:99px; font-size:.82rem; margin:0 .3rem .4rem 0;">' + esc(s) + '</span>').join('');
+
+  const h2 = 'font-weight:700; font-size:.8rem; letter-spacing:1px; text-transform:uppercase; color:' + state.accent + '; margin-bottom:.5rem;';
+
+  document.getElementById('resumeDoc').innerHTML =
+    '<div style="border-bottom:3px solid ' + state.accent + '; padding-bottom:1rem; margin-bottom:1.25rem;">' +
+      '<div style="font-size:1.9rem; font-weight:700; color:#111827;">' + (esc(state.fullName) || 'Your Name') + '</div>' +
+      (state.jobTitle ? '<div style="color:' + state.accent + '; font-weight:500; font-size:1.05rem;">' + esc(state.jobTitle) + '</div>' : '') +
+      '<div style="color:#6b7280; font-size:.85rem; margin-top:.4rem;">' + contactLine() + '</div></div>' +
+    (state.summary ? '<div style="margin-bottom:1.25rem;"><div style="' + h2 + '">Summary</div><p style="color:#374151;">' + esc(state.summary) + '</p></div>' : '') +
+    (expHtml ? '<div style="margin-bottom:1.25rem;"><div style="' + h2 + '">Experience</div>' + expHtml + '</div>' : '') +
+    (eduHtml ? '<div style="margin-bottom:1.25rem;"><div style="' + h2 + '">Education</div>' + eduHtml + '</div>' : '') +
+    (skillsHtml ? '<div style="margin-bottom:1rem;"><div style="' + h2 + '">Skills</div>' + skillsHtml + '</div>' : '');
+}
+
+function downloadPDF() {
+  if (!state.fullName.trim()) { showToast('Enter your name first.'); return; }
+  if (typeof html2pdf === 'undefined') { showToast('PDF library still loading — try again shortly.'); return; }
+  showToast('Generating PDF…');
+  const el = document.getElementById('resumeDoc');
+  const name = state.fullName.trim().toLowerCase().replace(/\s+/g, '-');
+  html2pdf().set({
+    margin: 8, filename: 'resume-' + name + '.pdf',
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+  }).from(el).save().then(() => showToast('✓ Resume PDF downloaded!'))
+    .catch(() => showToast('PDF export failed — please retry.'));
+}
+
+function resetAll() {
+  ['fullName','jobTitle','phone','email','location','links','summary','skills'].forEach(id => {
+    state[id] = ''; document.getElementById(id).value = '';
+  });
+  state.exp = []; state.edu = [];
+  document.getElementById('expList').innerHTML = '';
+  document.getElementById('eduList').innerHTML = '';
+  state.accent = '#0ea5e9';
+  document.getElementById('accentColor').value = state.accent;
+  render();
+  showToast('Reset.');
+}
+
+function init() {
+  ['fullName','jobTitle','phone','email','location','links','summary','skills'].forEach(id => {
+    document.getElementById(id).addEventListener('input', e => { state[id] = e.target.value; render(); });
+  });
+  document.getElementById('accentColor').addEventListener('input', e => { state.accent = e.target.value; render(); });
+  document.getElementById('addExpBtn').addEventListener('click', addExp);
+  document.getElementById('addEduBtn').addEventListener('click', addEdu);
+  document.getElementById('downloadBtn').addEventListener('click', downloadPDF);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
+#toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
