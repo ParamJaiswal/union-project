@@ -51,6 +51,10 @@ See **[MONETIZATION-GUIDE.md](MONETIZATION-GUIDE.md)** — per-product earning
 models, payment setup (Instamojo/Gumroad/Razorpay), free deployment options,
 a first-customers playbook, and a first-₹1,000 checklist.
 
+**Student / zero-outreach version:** **[MARKETPLACE-LAUNCH-KIT.md](MARKETPLACE-LAUNCH-KIT.md)** —
+copy-paste listings for Gumroad, Etsy, and Fiverr. One afternoon to set up,
+~15 min/week after, no pitching.
+
 ## Development
 
 Each product is a standalone folder under `products/`. Open `index.html`
